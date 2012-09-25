@@ -1,4 +1,4 @@
-requre 'pathname'
+require 'pathname'
 require 'fileutils'
 require 'rake/clean'
 
@@ -14,6 +14,8 @@ OBJ_PTH = OUT_PTH.join 'obj'
 TMP_PTH = ROOT_PTH.join 'tmp'
 DOXYGEN_CONFIG_FILE_PTH = ROOT_PTH.join '.doxygen_config'
 DOC_HTML_ALLOWED = true
+DOC_LATEX_ALLOWED = true
+DOC_MAN_ALLOWED = true
 APP_NAME = File.basename ROOT_PTH
 APP_FILE_PTH = OUT_PTH.join APP_NAME
 TEST_FILE_PTH = OUT_PTH.join 'run_tests'
@@ -69,14 +71,58 @@ end
 
 task :doc_prepare => [:prepare] do
   FileUtils.rm DOXYGEN_CONFIG_FILE_PTH if DOXYGEN_CONFIG_FILE_PTH.file?
-  config_file_content = ''
-  config_file_content << "PROJECT_NAME = '#{APP_NAME}'\n"
-  config_file_content << "INPUT = #{SRC_PTH.relative_path_from(ROOT_PTH)}\n"
-  config_file_content << "OUTPUT_DIRECTORY = '#{DOC_PTH}'\n"
+  config_file_content =  ''
+  config_file_content << "PROJECT_NAME = #{APP_NAME}\n"
+  config_file_content << "INPUT = #{SRC_PTH}\n"
+  config_file_content << "OUTPUT_DIRECTORY = #{DOC_PTH}\n"
+  config_file_content << "SOURCE_BROWSER = YES\n"
+  config_file_content << "OPTIMIZE_OUTPUT_FOR_C = YES\n"
+  config_file_content << "DOXYFILE_ENCODING = UTF-8\n"
+  config_file_content << "RECURSIVE = YES\n"
+  config_file_content << "EXTRACT_ALL = YES\n"
+  config_file_content << "ALPHABETICAL_INDEX = YES\n"
+  config_file_content << "ENABLE_PREPROCESSING = YES\n"
+  config_file_content << "MACRO_EXPANSION = YES\n"
+  config_file_content << "CLASS_DIAGRAMS = YES\n"
+  config_file_content << "HAVE_DOT = YES\n"
+  config_file_content << "DOT_CLEANUP = YES\n"
+  config_file_content << "GRAPHICAL_HIERARCHY = YES\n"
+  config_file_content << "GENERATE_LEGEND = YES\n"
+  config_file_content << "GENERATE_TESTLIST = YES\n"
+  config_file_content << "GENERATE_BUGLIST = YES\n"
+  config_file_content << "GENERATE_TODOLIST = YES\n"
+  config_file_content << "CLASS_GRAPH = YES\n"
+  config_file_content << "COLLABORATION_GRAPH = YES\n"
+  config_file_content << "GROUP_GRAPHS = YES\n"
+  config_file_content << "INCLUDE_GRAPH = YES\n"
+  config_file_content << "INCLUDED_BY_GRAPH = YES\n"
+  config_file_content << "CALL_GRAPH = YES\n"
+  config_file_content << "CALLER_GRAPH = YES\n"
+  config_file_content << "DIRECTORY_GRAPH = YES\n"
+  config_file_content << "DOT_IMAGE_FORMAT = png\n"
+  config_file_content << "SEARCH_INCLUDES = YES\n"
+  config_file_content << "SEARCHENGINE = YES\n"
   if DOC_HTML_ALLOWED
     config_file_content << "GENERATE_HTML = YES\n"
     config_file_content << "HTML_OUTPUT = html/\n"
     config_file_content << "HTML_FILE_EXTENSION = .html\n"
+  else
+    config_file_content << "GENERATE_HTML = NO\n"
+  end
+  if DOC_LATEX_ALLOWED
+    config_file_content << "GENERATE_LATEX = YES\n"
+    config_file_content << "LATEX_OUTPUT = latex/\n"
+    config_file_content << "COMPACT_LATEX = YES\n"
+    config_file_content << "USE_PDFLATEX = NO\n"
+  else
+    config_file_content << "GENERATE_LATEX = NO\n"
+  end
+  if DOC_MAN_ALLOWED
+    config_file_content << "GENERATE_MAN = YES\n"
+    config_file_content << "MAN_OUTPUT = man/\n"
+    config_file_content << "MAN_LINKS = NO\n"
+  else
+    config_file_content << "GENERATE_MAN = NO\n"
   end
   config_file_content << "\n"
   File.open(DOXYGEN_CONFIG_FILE_PTH, 'w') do |f|
@@ -86,7 +132,7 @@ end
 task :doc => [:doc_prepare] do
   FileUtils.cd(ROOT_PTH) do
     puts "\n>> Documentation generation Output"
-    puts `doxygen -c #{DOXYGEN_CONFIG_FILE_PTH}`
+    puts `doxygen #{DOXYGEN_CONFIG_FILE_PTH}`
     puts ">> #{APP_NAME} documentation generation (pid=#{$?.pid}) exited with status: #{$?.exitstatus}"
   end
 end
