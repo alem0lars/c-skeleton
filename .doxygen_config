@@ -1,0 +1,7 @@
+PROJECT_NAME = 'c_skeleton'
+INPUT = src
+OUTPUT_DIRECTORY = '/usr/local/archive/projects/c_skeleton/out/doc'
+GENERATE_HTML = YES
+HTML_OUTPUT = html/
+HTML_FILE_EXTENSION = .html
+

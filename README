@@ -1,0 +1,10 @@
+Build System:
+Manually made with a bash script called "manage"
+
+Directory Conventions:
+- build is where the program is built for each target system
+- tests will hold eventually tests
+- src hold the source code
+
+Unit Testing Framework:
+Check (http://check.sourceforge.net)
