@@ -149,11 +149,11 @@ end
 
 # Rule to generate the object files
 rule '.o' => lambda{ |obj_file| find_source(obj_file) } do |t|
-  sh "cc -c -o #{t.name} #{t.source} -Wall -Wextra --pedantic"
+  sh "cc -c -o #{t.name} #{t.source} -Wall -Wextra --pedantic -std=c99"
 end
 
 # Transformation process to get the executable from the OBJ files
 file APP_FILE_PTH => OBJ do
-  sh "cc -o #{APP_FILE_PTH} #{OBJ}"
+  sh "cc -std=c99 -o #{APP_FILE_PTH} #{OBJ}"
 end
 
