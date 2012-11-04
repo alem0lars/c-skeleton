@@ -3,17 +3,28 @@
 #include <CUnit/Basic.h>
 #include <CUnit/Automated.h>
 
+#include "dummy_test.h"
+
 
 // { Prototypes
 void run_tests(void);
 void generate_report(void);
 // }
 
+// { Test Suites
+CU_SuiteInfo suites[] = {
+  { "Dummy",  suite_dummy_init,  suite_dummy_cleanup,  testcases_dummy }, // TODO: stub suite
+  CU_SUITE_INFO_NULL,
+};
+// }
 
 int main(int argc, char **argv) {
+  // ==> Initialize the CUnit test registry
+  if (CU_initialize_registry() != CUE_SUCCESS) {
+    return CU_get_error();
+  }
   // ==> Register test suites
-  CU_pSuite suite = NULL; // Test suite container
-  // TODO
+  CU_ErrorCode error = CU_register_suites(suites);
 
   // ==> Run tests
   run_tests();
@@ -36,5 +47,5 @@ void generate_report() {
   CU_list_tests_to_file();
 }
 
-// vim: set filetype=c:
 
+// vim: set filetype=c:
