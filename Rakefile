@@ -53,7 +53,7 @@ task :compile => [:prepare, APP_FILE_PTH]
 task :run => [:compile] do
   File.chmod(0555, APP_FILE_PTH) if APP_FILE_PTH.file?
   puts "\n>> App execution Output"
-  puts `#{APP_FILE_PTH}`
+  sh "#{APP_FILE_PTH}"
   puts ">> #{APP_NAME} (pid=#{$?.pid}) exited with status: #{$?.exitstatus}"
 end
 
