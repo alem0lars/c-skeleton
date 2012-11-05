@@ -145,7 +145,7 @@ task :run_tests => [:compile_tests] do
   puts "\n>> Tests execution Output"
   sh "#{TEST_FILE_PTH}"
   FileUtils.cd(ROOT_PTH) do
-    FileUtils.mv Dir.glob('CUnit*'), DOC_PTH.to_s, :verbose => true
+    FileUtils.mv Dir.glob('CUnit*'), DOC_PTH.to_s
   end
   puts ">> #{APP_NAME} testing phase (pid=#{$?.pid}) exited with status: #{$?.exitstatus}"
 end
