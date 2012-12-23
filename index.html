@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>C-skeleton by alem0lars</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/alem0lars/c-skeleton">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/alem0lars/c-skeleton/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/alem0lars/c-skeleton/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>C-skeleton</h1>
+          <p>C Skeleton</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/alem0lars">alem0lars</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>C Skeleton</h1>
+
+<h2>Author</h2>
+
+<ul>
+<li><a href="http://molarialessandro.info">Alessandro Molari</a></li>
+</ul><h2>Vision / Requirements</h2>
+
+<p>I don't like Make or CMake so I have created a small (and portable between projects) build system using Rake, with the following main features:</p>
+
+<ul>
+<li><strong>Compile the code</strong></li>
+<li>
+<strong>Generate the reports</strong> (e.g. the documentation)</li>
+<li>
+<strong>Run the software</strong> (in standalone mode) and the unit tests</li>
+<li>Perform some kind of <strong>code analysis</strong> (static, dynamic, memory leaks, ...)
+The build system should be configurable but easy-to-use, so no mandatory configurations should be needed (a.k.a. <strong>0-time setup</strong>)</li>
+</ul><h2>Usage</h2>
+
+<p><code>rake &lt;task&gt;</code>
+where task is:</p>
+
+<ul>
+<li>
+<code>compile</code>: Compile the sources (mainly using cc)</li>
+<li>
+<code>run</code>: Run the software (in standalone mode)</li>
+<li>
+<code>run_tests</code>: Unit testing (using CUnit)</li>
+<li>
+<code>mem_leaks_analysis</code>: Check for memory leaks (using valgrind)</li>
+<li>
+<code>static_analysis</code>: Perform the static analysis (using splint)</li>
+<li>
+<code>doc</code>: Generate the documentation (using doxygen)</li>
+</ul><p>There are also other rake tasks and shortcuts. To list them run <code>rake -T</code></p>
+
+<hr><p>There is no need to configure the build system (0-setup), but if you want
+you can modify the configuration variables in the Rakefile</p>
+
+<h2>Directory conventions</h2>
+
+<p>Using the following directory conventions is not mandatory, but if you want to change the conventions you will need to also change the configuration variables in the Rakefile.
+These are the directory conventions:</p>
+
+<ul>
+<li>
+<code>out</code> is where the program is built and maybe other artifacts are generated</li>
+<li>
+<code>tests</code> will hold eventually tests</li>
+<li>
+<code>src</code> holds the source code</li>
+<li>
+<code>tmp</code> is a temporary directory</li>
+</ul><h2>Requirements</h2>
+
+<p>To use the build system you need:</p>
+
+<ul>
+<li>Rake (and Ruby)
+For each task there could be additional requirements (specified above in the usage).</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
