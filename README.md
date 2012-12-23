@@ -1,12 +1,9 @@
 C Skeleton
 ===============================================================================
 ## Author
-Alessandro Molari
-member of Nextreamlabs (http://nextreamlabs.org)
-Emails:
-  molari.alessandro@gmail.com
+* [Alessandro Molari](http://molarialessandro.info)
 
-## Build System:
+## Build System
 I don't like Make or CMake so I have created a small (and portable between
 projects) build system using Rake, with the following main features:
 * Compile the code (through cc): rake compile
@@ -26,7 +23,7 @@ your system. For each task there could be additional requirements
 
 If you don't want to use the build system you can always do the job manually.
 
-## Directory Conventions:
+## Directory Conventions
 - out is where the program is built and maybe other artifacts are generated
 - tests will hold eventually tests
 - src hold the source code
